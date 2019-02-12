@@ -1,0 +1,58 @@
+htmlpage Expose(listing_id) 
+displayname = "Exposé" 
+content
+<%{     
+	listing = Listings[Reference_Code == listing_id];    
+	%>
+  <table style="border:solid 1px #d1e0e0; margin:30px; padding:20px">
+    <tr id="header">
+      <td style="border-bottom: 3px solid #d1e0e0;">
+        <img style="width:200px" src="http://zoho.education/books/images/awesometownlogo.png">
+        <h2>Awesometown Realty</h2>
+        <p>123 Sunshine St. | www.awesometown.realty | @awesometownrealty</p>
+      </td>
+    </tr>
+    <tr id="title">
+      <td>
+        <h1>
+          <%= listing.Property_Title%>
+            (<% = listing.Reference_Code%>)
+        </h1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr id="body" style="vertical-align: text-top;">
+            <td>
+              <p>This amazing
+                <%=listing.Property_Type%> is located in the prime location in the city.                     
+				Don't miss this opportunity. Contact us for a viewing today</p>
+              <%broker=Employees[ID==listing.Broker];%>
+                <h3>Call Us Today:
+                  <%= broker.Mobile_Number%>
+                    (<%= broker.First_Name + " " + broker.Last_Name%>)</h3>
+            </td>
+            <td>
+              <ul>
+                <li>Area(m2):<br><strong><% = listing.Area_m2%></ strong></li>
+				<li>Bedrooms:<br><strong><%= listing.Bedrooms%></strong></li>
+                <li>Bathroom:<br><strong><%= listing.Bathrooms%></strong></li>
+                <li>Address:<br><strong> <%= listing.Address%></strong>
+                </li>
+                <h2>$
+                  <%= listing.Selling_Price%>ASKING PRICE</h2>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr id="footer">
+      <td style=" border-top: 3px solid #d1e0e0; text-align: center;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+		tempor incididunt ut labore et dolore magna aliqua.</p>
+      </td>
+    </tr>
+  </table>
+  <%}%>
